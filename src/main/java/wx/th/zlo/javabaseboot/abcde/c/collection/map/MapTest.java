@@ -12,9 +12,8 @@ containsValue(v)
 size()
 isEmpty()
 putAll(map m) 将map中的键值都放入
-
-
-
+clear()
+Entry<K,V> 映射条目接口
  */
 
 public interface MapTest {

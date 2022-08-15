@@ -11,6 +11,10 @@ import org.junit.Test;
 
 
 //集合：看Collection接口
+/*
+
+
+ */
 public class CollectionTest {
 	
 	private List<String> list;
