@@ -29,13 +29,14 @@ public class ArrayListTest {
 	@Test
 	public void test() throws Exception {
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.add(1);
-		list.add(1);
-		for(int i = 0 ; i < 16 ; i++) {
-			list.add(i);
-			System.out.println(getArrayListCapaCity(list));
-		}
-
+		list.add(2);
+		list.add(3);
+		ArrayList<Integer> list1 = new ArrayList<Integer>();
+		list1.add(1);
+		list1.add(2);
+		boolean b = list.retainAll(list1); //求list中包含了list1的元素
+		System.out.println(b);
+		System.out.println(list);
 
 
 	}

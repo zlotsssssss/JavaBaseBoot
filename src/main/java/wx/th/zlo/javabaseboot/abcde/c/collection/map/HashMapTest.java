@@ -27,6 +27,8 @@ public class HashMapTest {
         Object[] objec = getArrayListCapaCity(map);
         map.put("banana", new Fruit("banana", "19"));
         map.put("apple", new Fruit("apple", "19"));
+        map.put("dddd", new Fruit("apple", "19"));
+        map.put("applecc", new Fruit("apple", "19"));
         Set<String> keySet = map.keySet();
         for (String s : keySet) {
             System.out.println(s);
