@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.BeanUtils;
 
-import wx.th.zlo.javabaseboot.fghij.j.jpa.Student;
+import wx.th.zlo.javabaseboot.aabase.Student;
 
 public class ClassTest {
 	public static void main(String[] args) throws Exception{
@@ -16,6 +16,7 @@ public class ClassTest {
 		//通过 属性名和 方法名 获得类的属性和方法
 		Field declaredField = studentClass.getDeclaredField("name");
 		Method declaredMethod = studentClass.getDeclaredMethod("getName");
+		Method getAge = studentClass.getDeclaredMethod("getAge");
 		//通过BeanUtils 将对类的表述结构 转换成 一对象 包含了属性、属性的读写方法 这样的结构
 		PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(studentClass);
 		for (PropertyDescriptor pDescriptor : propertyDescriptors) {

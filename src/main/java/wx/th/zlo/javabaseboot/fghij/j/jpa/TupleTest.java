@@ -4,6 +4,8 @@ package wx.th.zlo.javabaseboot.fghij.j.jpa;
 import javax.persistence.Tuple;
 
 import org.hibernate.jpa.spi.NativeQueryTupleTransformer;
+import wx.th.zlo.javabaseboot.aabase.Student;
+
 /**
  * 		功能：Tuple类型转化成任意类，
  * 		Tuple类：用Map<key,value>存储 字段和字段值

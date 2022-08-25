@@ -17,12 +17,16 @@ public class ReentrantReadWriteLockTest {
     private final static List<Long> longs =new ArrayList<Long>();
 
     public static void main(String[] args) throws InterruptedException {
-        new Thread(ReentrantReadWriteLockTest::write).start();
+
        // TimeUnit.SECONDS.sleep(3);
         new Thread(ReentrantReadWriteLockTest::read).start();
         new Thread(ReentrantReadWriteLockTest::read).start();
+        new Thread(ReentrantReadWriteLockTest::read).start();
         new Thread(ReentrantReadWriteLockTest::write).start();
-        new Thread(ReentrantReadWriteLockTest::write).start();
+        new Thread(ReentrantReadWriteLockTest::read).start();
+        new Thread(ReentrantReadWriteLockTest::read).start();
+
+
     }
 
     static void write() {
@@ -41,13 +45,13 @@ public class ReentrantReadWriteLockTest {
     static void read() {
         try {
             readLock.lock();
-
+            TimeUnit.SECONDS.sleep(3);
             System.out.println(Thread.currentThread().getName() + " read ");
             longs.forEach(x -> System.out.println(x));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            readLock.lock();
+            readLock.unlock();
         }
     }
 

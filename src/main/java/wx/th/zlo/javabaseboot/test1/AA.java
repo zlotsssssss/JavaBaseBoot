@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import wx.th.zlo.javabaseboot.fghij.j.jpa.Student;
+import wx.th.zlo.javabaseboot.aabase.Student;
 
 public class AA {
 	public static int ConvertBinaryArrayToInt(List<Integer> binary) {

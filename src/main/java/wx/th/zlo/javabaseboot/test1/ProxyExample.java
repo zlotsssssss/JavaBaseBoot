@@ -45,7 +45,6 @@ public class ProxyExample implements InvocationHandler {
         ProxyExample example = new ProxyExample();
         HelloWorld proxy = (HelloWorld) example.bind(new HelloWorldImpl());
         proxy.sayHelloWorld();
- 
     }
 }
 
