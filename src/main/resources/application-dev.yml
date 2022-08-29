@@ -1,0 +1,79 @@
+server:
+  port: 8083
+  servlet: 
+    context-path: /javabase
+spring:
+  servlet:
+    multipart:
+      # 默认支持文件上传
+      enabled: true
+      # 最大支持文件大小
+      max-file-size: 50MB
+      # 最大支持请求大小
+      max-request-size: 100MB
+      # 文件支持写入磁盘
+      file-size-threshold: 0
+      # 上传文件的临时目录
+      location: /test
+  application:
+    # 模块名称
+    # @type string
+    name: yxhbapp
+  datasource:
+#  非分布式事务
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+        # 数据源1
+        url: jdbc:mysql://localhost:3306/zlo?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        username: root
+        password: 123
+        driverClassName: com.mysql.cj.jdbc.Driver
+        # 初始连接数
+        initialSize: 5
+        # 最小连接池数量
+        minIdle: 10
+        # 最大连接池数量
+        maxActive: 20
+        # 配置获取连接等待超时的时间
+        maxWait: 60000
+        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+        timeBetweenEvictionRunsMillis: 60000
+        # 配置一个连接在池中最小生存的时间，单位是毫秒
+        minEvictableIdleTimeMillis: 300000
+        # 配置一个连接在池中最大生存的时间，单位是毫秒
+        maxEvictableIdleTimeMillis: 900000
+        # 配置检测连接是否有效
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+         # 合并多个DruidDataSource的监控数据
+        useGlobalDataSourceStat: true
+        webStatFilter: 
+            enabled: true
+        statViewServlet:
+            enabled: true
+            # 设置白名单，不填则允许所有访问
+            allow:
+            url-pattern: /druid/*
+            # 控制台管理用户名和密码
+            login-username: admin
+            login-password: wisoft
+        filter:
+            stat:
+                enabled: true
+                # 慢SQL记录
+                log-slow-sql: true
+                slow-sql-millis: 1000
+                merge-sql: true
+            wall:
+                config:
+                    multi-statement-allow: true
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect

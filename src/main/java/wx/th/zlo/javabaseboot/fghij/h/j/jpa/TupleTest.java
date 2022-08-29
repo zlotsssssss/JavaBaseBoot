@@ -1,4 +1,4 @@
-package wx.th.zlo.javabaseboot.fghij.j.jpa;
+package wx.th.zlo.javabaseboot.fghij.h.j.jpa;
 
 
 import javax.persistence.Tuple;

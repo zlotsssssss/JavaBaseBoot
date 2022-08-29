@@ -4,6 +4,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -37,8 +40,6 @@ public class ArrayListTest {
 		boolean b = list.retainAll(list1); //求list中包含了list1的元素
 		System.out.println(b);
 		System.out.println(list);
-
-
 	}
 	
 }

@@ -2,9 +2,7 @@ package wx.th.zlo.javabaseboot.abcde.c.collection.map;
 
 import wx.th.zlo.javabaseboot.fghij.g.generics.Fruit;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
 
 
