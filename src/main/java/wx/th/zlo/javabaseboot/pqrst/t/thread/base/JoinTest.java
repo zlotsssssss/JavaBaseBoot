@@ -2,7 +2,7 @@ package wx.th.zlo.javabaseboot.pqrst.t.thread.base;
 
 //当有线程join到当前线程，当前线程被阻塞，等待加入线程执行完毕，才能进去就绪状态
 
-// join(long millis):等待该线程终止的时间最长为 millis 毫秒,等待millis后继续zhi'x
+// join(long millis):等待该线程终止的时间最长为 millis 毫秒,等待millis后继续执行
 
 public class JoinTest {
     public static void main(String[] args) {
