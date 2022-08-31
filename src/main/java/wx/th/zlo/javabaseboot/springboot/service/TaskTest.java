@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
     1.启动类加上 @EnableScheduling
     2.实例化TaskBean
  */
-@Component
+//@Component
 public class TaskTest {
     private static final Logger log = LoggerFactory.getLogger(TaskTest.class);
     private static int count;

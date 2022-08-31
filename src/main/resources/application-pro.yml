@@ -1,68 +1,75 @@
 server:
-  port: 8022
-  servlet: 
-    context-path: /yxhbapp
+  port: 8083
+  servlet:
+    context-path: /javabase
 spring:
+  servlet:
+    multipart:
+      # 默认支持文件上传
+      enabled: true
+      # 最大支持文件大小
+      max-file-size: 50MB
+      # 最大支持请求大小
+      max-request-size: 100MB
+      # 文件支持写入磁盘
+      file-size-threshold: 0
+      # 上传文件的临时目录
+      location: /test
   application:
     # 模块名称
     # @type string
     name: yxhbapp
   datasource:
-#  非分布式事务
+    #  非分布式事务
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-        # 数据源1
-        url: jdbc:mysql://10.36.21.38:3306/yxhb?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-        username: yxhb
-        password: Mysql2022
-        driverClassName: com.mysql.cj.jdbc.Driver
-        # 初始连接数
-        initialSize: 5
-        # 最小连接池数量
-        minIdle: 10
-        # 最大连接池数量
-        maxActive: 20
-        # 配置获取连接等待超时的时间
-        maxWait: 60000
-        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-        timeBetweenEvictionRunsMillis: 60000
-        # 配置一个连接在池中最小生存的时间，单位是毫秒
-        minEvictableIdleTimeMillis: 300000
-        # 配置一个连接在池中最大生存的时间，单位是毫秒
-        maxEvictableIdleTimeMillis: 900000
-        # 配置检测连接是否有效
-        validationQuery: SELECT 1 FROM DUAL
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-         # 合并多个DruidDataSource的监控数据
-        useGlobalDataSourceStat: true
-        webStatFilter: 
-            enabled: true
-        statViewServlet:
-            enabled: true
-            # 设置白名单，不填则允许所有访问
-            allow:
-            url-pattern: /druid/*
-            # 控制台管理用户名和密码
-            login-username: admin
-            login-password: wisoft
-        filter:
-            stat:
-                enabled: true
-                # 慢SQL记录
-                log-slow-sql: true
-                slow-sql-millis: 1000
-                merge-sql: true
-            wall:
-                config:
-                    multi-statement-allow: true
-  mvc:
-    view:
-      prefix: /pages/
-      suffix: .jsp 
-    pathmatch:
-      matching-strategy: ANT_PATH_MATCHER                   
+      # 数据源1
+      url: jdbc:mysql://localhost:3306/zlo?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+      username: root
+      password: 123
+      driverClassName: com.mysql.cj.jdbc.Driver
+      # 初始连接数
+      initialSize: 5
+      # 最小连接池数量
+      minIdle: 10
+      # 最大连接池数量
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      # 合并多个DruidDataSource的监控数据
+      useGlobalDataSourceStat: true
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: admin
+        login-password: wisoft
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+
   jpa:
     show-sql: true
     hibernate:
@@ -70,64 +77,3 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-#      naming:
-#        physical-strategy:  org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl    
-
-# Swagger配置
-swagger:
-  # 是否开启swagger
-  enabled: true
-  # 请求前缀
-  pathMapping: 
-  # token配置
-token:
-    # 令牌自定义标识
-    header: Authorization
-    # 令牌密钥
-    secret: 
-    # 令牌有效期（默认30分钟）
-    expireTime: 30
-dubbo:
-  application:
-    name: yxhbappconsumer
-  registry:
-    address: zookeeper://10.36.21.38:2181
-  protocol:
-    name: dubbo
-    port: 20884
-
-wisoft_hesian:
-  nfm: hessian://10.36.21.38:8013/iframe-oms/com.wisoft.framework.nfm.service.INfmServerPublicService      
-#192.10.110.175
-#  前端调用时使用
-casHost: http://10.36.21.38:8012
-#  后端调用时使用
-casHostback: http://10.36.21.38:8012
-clientId: 3fc26d19-d5f4-497f-9dba-888c5f274132
-clientSecret: 43d4148a-27fe-4709-a1cd-5b9ea6de4c78
-front:
-  oLink:
-      - name: kkview
-        url: http://10.36.21.38:9099/onlinePreview?url=
-      - name: download
-        url: http://10.36.21.38:8013/iframe-oms/nfm/dowmloadFile.do?id=
-      - name: zyurl
-        url: https://gateway.eazytec-cloud.com/YX/tng-boot/biz/gov/v4/user/getBase?userId= 
-  casUrl: http://10.36.21.38:8012/cas/login?clientId=3fc26d19-d5f4-497f-9dba-888c5f274132
-  sAmapKey: 2476bc21e07c9f86505643e950aa35d0
-  
-#卓易信息  
-zy:
-  #应用的 clientid
-  comClientId: 25cd08af-d23a-421e-8192-40af369e2816
-  #企业端：yxzqt 政府端：yxzqt-gov
-  realm: yxzqt-gov-online
-  #认证中心
-  url: http://2.18.243.11:31228/auth
-  #网关
-  gateway: http://2.18.243.11:8000
-
-#蓝藻预警平台数据对接
-lz:
-  #蓝藻API服务器地址
-  url: http://2.22.69.4:8081/

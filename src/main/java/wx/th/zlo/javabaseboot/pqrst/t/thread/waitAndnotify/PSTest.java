@@ -1,15 +1,15 @@
-package wx.th.zlo.javabaseboot.pqrst.t.thread.object;
+package wx.th.zlo.javabaseboot.pqrst.t.thread.waitAndnotify;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /*
 都是Object的方法
-void wait()	让活动在当前对象的线程无限等待（释放之前占有的锁）
-void notify()	唤醒当前对象正在等待的线程（只提示唤醒，不会释放锁）
+void wait()	    让活动在当前对象的线程无限等待（释放之前占有的锁）,wait( long timeout) :当线程超过了设置时间之后，自动恢复执行
+
 void notifyAll()	唤醒当前对象全部正在等待的线程（只提示唤醒，不会释放锁）
 
-线程进入等待后，被唤醒，
+
 
  */
 public class PSTest {
@@ -43,7 +43,7 @@ class Producer implements Runnable {
                 if (list.size() > 0) {
                     try {
                         System.out.println("进入");
-                        list.wait(); //当前线程等待，唤醒线程
+                        list.wait(); //当前线程等待，释放锁，
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -51,11 +51,11 @@ class Producer implements Runnable {
                 list.add(new Object());
                 System.out.println(Thread.currentThread().getName() + "--->当前个数" + list.size());
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                list.notifyAll(); //notify函数中只是对线程进行了队列转移
+                list.notifyAll(); //notify函数中只是对线程进行了队列转移,唤醒线程
             }
         }
     }
@@ -64,7 +64,6 @@ class Producer implements Runnable {
 class Consumer implements Runnable {
 
     List list;
-
 
     public Consumer(List list) {
         this.list = list;
@@ -77,6 +76,7 @@ class Consumer implements Runnable {
             synchronized (list) {
                 if (list.size() == 0) {
                     try {
+                        System.out.println("消费者，进入等待");
                         list.wait();
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
