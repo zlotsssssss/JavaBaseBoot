@@ -76,4 +76,13 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#        123
+#在SpringBoot中使用jpa，表是通过对应的实体直接建立，默认情况下，表的引擎engine=MyISAM性能更好,
+#但不提供事务支持，如果需要使用事务，需要将JPA建表的默认引擎修改为：InNoDB，直接修改配置文件，如下：
+# application.yml
+#spring:
+#  jpa:
+#   database-platform: org  .hibernate.dialect.MySQL5InnoDBDialect #InnoDB才能支持事务
+#
+#

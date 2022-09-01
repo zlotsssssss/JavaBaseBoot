@@ -7,12 +7,12 @@ import javax.persistence.*;
 @Entity(name="t_user")
 @Data
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Column()
-    private String avatarPath;
+        @Column()
+        private String avatarPath;
 
     @Column()
     private String name;
@@ -22,4 +22,7 @@ public class User {
 
     @Column()
     private String phone;
+
+    @Column()
+    private Integer money;
 }
