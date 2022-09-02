@@ -1,5 +1,6 @@
 package wx.th.zlo.javabaseboot.springboot.config;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
@@ -7,10 +8,13 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.interceptor.*;
 
+import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +53,10 @@ public class TransactionAdviceConfig {
                 Collections.singletonList(new RollbackRuleAttribute(Exception.class)));
         requiredTx.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
         requiredTx.setTimeout(TX_METHOD_TIMEOUT);
+//        RollbackRuleAttribute rollbackRuleAttribute = new RollbackRuleAttribute(NullPointerException.class);
+//        requiredTx.setRollbackRules(Arrays.asList(rollbackRuleAttribute));
+
+
 
         /**
          * 无事务地执行，挂起任何存在的事务
@@ -87,12 +95,12 @@ public class TransactionAdviceConfig {
     }
 
     @Bean
-    public Advisor txAdviceAdvisor() {
+    public Advisor txAdviceAdvisor(TransactionInterceptor txAdvice) {
         //配置事务切入点表达式
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression(AOP_POINTCUT_EXPRESSION);
         //增强事务，关联切入点和事务属性
-        return new DefaultPointcutAdvisor(pointcut, txAdvice());
+        return new DefaultPointcutAdvisor(pointcut, txAdvice);
     }
 
 
