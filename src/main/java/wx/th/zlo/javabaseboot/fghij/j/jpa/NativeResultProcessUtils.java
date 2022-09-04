@@ -1,4 +1,4 @@
-package wx.th.zlo.javabaseboot.fghij.h.j.jpa;
+package wx.th.zlo.javabaseboot.fghij.j.jpa;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;

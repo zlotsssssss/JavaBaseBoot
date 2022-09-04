@@ -43,6 +43,10 @@ public class Student {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+
+	public  void greet(){
+		System.out.println("hello");
+	}
 	
 	
 }

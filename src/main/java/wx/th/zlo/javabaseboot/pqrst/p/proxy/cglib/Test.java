@@ -1,5 +1,6 @@
 package wx.th.zlo.javabaseboot.pqrst.p.proxy.cglib;
 
+import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
@@ -19,10 +20,14 @@ class StudentInterceptor implements MethodInterceptor{
 
 public class Test {
     public static void main(String[] args) {
+        String location = Test.class.getResource("").getPath().replaceAll("%20"," ") + "debugging/";
+        System.out.println(location);
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, location);
+
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(Student.class);
         enhancer.setCallback(new StudentInterceptor());
         Student stu = (Student)enhancer.create();
-        stu.getAge();
+        stu.greet();
     }
 }

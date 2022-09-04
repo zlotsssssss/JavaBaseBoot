@@ -28,11 +28,3 @@ readOnly：只读操作。默认是false，
 rollbackFor ：出现哪些异常，回滚
 
 norollbackFor ：出现哪些异常，不会滚
-
-
-
-
-
-
-
-

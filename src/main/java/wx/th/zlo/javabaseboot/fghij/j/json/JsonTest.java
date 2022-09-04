@@ -1,4 +1,4 @@
-package wx.th.zlo.javabaseboot.fghij.h.j.json;
+package wx.th.zlo.javabaseboot.fghij.j.json;
 
 import java.util.List;
 
