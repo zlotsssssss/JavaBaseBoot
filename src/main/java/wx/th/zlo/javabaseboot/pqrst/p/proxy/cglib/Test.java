@@ -20,9 +20,9 @@ class StudentInterceptor implements MethodInterceptor{
 
 public class Test {
     public static void main(String[] args) {
-        String location = Test.class.getResource("").getPath().replaceAll("%20"," ") + "debugging/";
-        System.out.println(location);
-        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, location);
+        //String location = Test.class.getResource("").getPath().replaceAll("%20"," ") + "debugging/";
+      //  System.out.println(location);
+       // System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, location);
 
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(Student.class);

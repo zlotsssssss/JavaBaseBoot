@@ -47,12 +47,25 @@ class ProxyUserInterface implements InvocationHandler {
         this.target = target;
         this.blackList = blackList;
     }
+    /**
+     * 方法描述:
+     *
+     * @param proxy 代理类
+     * @param method 方法
+     * @param args     参数
+     * @return Object
+     *
+     * @变更记录 2022/9/5 8:59 周立瓯 创建
+     *
+     */
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            if((Boolean) method.invoke(target,args)){
+        System.out.println(proxy.getClass());
+
+        if((Boolean) method.invoke(target,args)){
                 return  !blackList.contains(args[0].toString());
-            }
+        }
             return  false;
     }
 }
@@ -63,6 +76,7 @@ public class Test {
         List<String> blackLists = new ArrayList<String>(Arrays.asList("zlo1","sjg"));
         ProxyUserInterface proxyUserInterface = new ProxyUserInterface(userInterface,blackLists);
         IUserInterface proxyInstance = (IUserInterface)Proxy.newProxyInstance(userInterface.getClass().getClassLoader(), userInterface.getClass().getInterfaces(), proxyUserInterface);
+        System.out.println(proxyInstance.getClass());
         Boolean zlo = proxyInstance.login("zlo", "123");
         System.out.println(zlo);
     }
