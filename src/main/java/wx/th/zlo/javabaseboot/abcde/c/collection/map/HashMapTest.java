@@ -33,7 +33,6 @@ public class HashMapTest {
         for (String s : keySet) {
             System.out.println(s);
         }
-
     }
 
     public Object[] getArrayListCapaCity(Map<String, Fruit> map) throws Exception {
