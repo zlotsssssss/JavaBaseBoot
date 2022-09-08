@@ -15,7 +15,6 @@ import org.junit.Test;
 size()
 isEmpty()
 add(e)
-get(index)
 remove(e)
 contains(e)
 retainAll(c)

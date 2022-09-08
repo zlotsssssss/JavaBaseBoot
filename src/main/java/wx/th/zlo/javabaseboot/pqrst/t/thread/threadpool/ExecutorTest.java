@@ -32,10 +32,12 @@ handler：线程池无法继续接收任务(队列已满且线程数达到maximu
 public class ExecutorTest {
     public static void main(String[] args) {
         //这里默认拒绝策略为AbortPolicy
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(1,4,4L, TimeUnit.SECONDS,new ArrayBlockingQueue(1));
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(1,4,1L, TimeUnit.SECONDS,new ArrayBlockingQueue(1));
         ArrayList<Integer> integers = new ArrayList<>();
         integers.add(1);
         integers.add(2);
+        integers.add(3);
+        integers.add(4);
         for (Integer i : integers){
             executor.execute(new Runnable() {
                 @Override
@@ -50,7 +52,7 @@ public class ExecutorTest {
                     for(int i = 0 ; i < 3 ; i++){
                         System.out.println( Thread.currentThread().getName());
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(1);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
@@ -61,6 +63,11 @@ public class ExecutorTest {
         }
 
         System.out.println("ok");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("ok");
     }
 }
