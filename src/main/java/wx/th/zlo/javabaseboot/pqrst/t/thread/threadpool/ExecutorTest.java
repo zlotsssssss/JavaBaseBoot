@@ -27,12 +27,13 @@ threadFactory：创建线程的工厂类，默认使用Executors.defaultThreadFa
 handler：线程池无法继续接收任务(队列已满且线程数达到maximunPoolSize)时的饱和策略，取值有AbortPolicy、CallerRunsPolicy、DiscardOldestPolicy、DiscardPolicy
 
 线程池默认机制：
+//理解：相当于 把多个任务给 核心工作者去运行，核心工作者运行完一个任务，去gatTask()下一个
 
  */
 public class ExecutorTest {
     public static void main(String[] args) {
         //这里默认拒绝策略为AbortPolicy
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(1,4,1L, TimeUnit.SECONDS,new ArrayBlockingQueue(1));
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(1,4,1L, TimeUnit.SECONDS,new ArrayBlockingQueue(2));
         ArrayList<Integer> integers = new ArrayList<>();
         integers.add(1);
         integers.add(2);
@@ -43,19 +44,8 @@ public class ExecutorTest {
                 @Override
                 public void run() {
                     Thread.currentThread().setName("zlo"+i);
-                    if(i == 1)
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
                     for(int i = 0 ; i < 3 ; i++){
                         System.out.println( Thread.currentThread().getName());
-                        try {
-                            Thread.sleep(1);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
                     }
 
                 }
@@ -63,11 +53,7 @@ public class ExecutorTest {
         }
 
         System.out.println("ok");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println("ok");
         System.out.println("ok");
     }
 }

@@ -1,4 +1,4 @@
-package wx.th.zlo.javabaseboot.klmno.l.io;
+package wx.th.zlo.javabaseboot.fghij.i.io;
 
 import org.junit.Test;
 

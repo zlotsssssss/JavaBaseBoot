@@ -1,5 +1,4 @@
-package wx.th.zlo.javabaseboot.klmno.l.io;
-
+package wx.th.zlo.javabaseboot.fghij.i.io;
 import org.hibernate.result.Output;
 import org.junit.Test;
 
