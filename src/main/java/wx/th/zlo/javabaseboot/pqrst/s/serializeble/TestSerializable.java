@@ -27,6 +27,8 @@ class Person implements Serializable{
 	}
 	private int age;
 	private String name;
+
+	private String s;
 	@Override
 	public String toString() {
 		return "Person [age=" + age + ", name=" + name + "]";
@@ -36,18 +38,16 @@ class Person implements Serializable{
 }
 public class TestSerializable  {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		//Se();
 		Dse();
-		
-		
 	}
-	public static  void Se() throws IOException {
+	public static  void Se() throws IOException {  //将对象序列化到硬盘，默认带有序列化ID
 		Person person = new Person();
 		person.setAge(18);
 		person.setName("zlo");
-		
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("b.txt"));
 		out.writeObject(person);
-		System.out.println("���л��ɹ�");
+		System.out.println("");
 		
 	}
 	public static void Dse() throws IOException, ClassNotFoundException{
