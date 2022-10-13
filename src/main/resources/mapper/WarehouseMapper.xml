@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wx.th.zlo.javabaseboot.springboot.repository.WarehouseMapper">
+    <select id="getList" resultType="wx.th.zlo.javabaseboot.springboot.entity.WarehouseEntity">
+        SELECT c.id,
+               c.parentId,
+               c.fullName,
+               c.enCode,
+               c.warehouseattribute,
+               c.telephone,
+               c.warehousetypeid,
+               c.warehousemanagerid,
+               bu.F_RealName as warehousemanager,
+               c.creatoruserid,
+               c.creatorusername,
+               c.creatortime,
+               c.lastmodifyuserid,
+               c.lastmodifyusername,
+               c.lastmodifytime,
+               c.datastatus,
+               c.subuserid,
+               c.subusername,
+               c.subtime,
+               c.audituserid,
+               c.auditusername,
+               c.audittime,
+               c.isdel,
+               c.deluserid,
+               c.delusername,
+               c.deltime,
+               c.isdis,
+               c.disuserid,
+               c.disusername,
+               c.distime,
+               c.description,
+               IFNULL(p.fullName,'无')  as parentname,
+               IFNULL(p.enCode,'无') as parentencode
+        FROM mom_warehouse c
+                 left join base_user bu on bu.F_Id = c.warehousemanagerid
+                 left join mom_warehouse p on c.parentId = p.id
+        <where>
+            c.isdel = 0
+            <if test="groupId != null and groupId != 0">
+                and c.wareHouseTypeId = #{groupId}
+            </if>
+            <!--    快速查询    -->
+            <if test="pagination.keyword!=null and pagination.keyword!='' and pagination.quickSearchColumns != null and pagination.quickSearchColumns != ''">
+                AND ${pagination.quickSearchColumns} concat('%',#{pagination.keyword},'%')
+            </if>
+            <if test="pagination.isSelection == true">
+                AND  c.isdis = 0
+            </if>
+            <!--    高级查询    -->
+            <if test="pagination.seniorSearch != null and pagination.seniorSearch != ''">
+                and ${pagination.seniorSearch}
+            </if>
+
+            <if test="pagination.parentid != null and pagination.parentid != ''">
+                and c.parentid = ${pagination.parentid}
+            </if>
+        </where>
+        <choose>
+            <!--    排序    -->
+            <when test="pagination.sort != null and pagination.sort != '' and pagination.sort != ' order by '">
+                ${pagination.sort}
+            </when>
+            <otherwise>
+                order by c.creatortime desc,  c.lastmodifytime desc
+            </otherwise>
+        </choose>
+    </select>
+
+</mapper>

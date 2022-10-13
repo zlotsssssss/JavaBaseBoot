@@ -17,4 +17,11 @@ public class UserService {
         userRepository.addMoneyById(10,1L);
         userRepository.reduceMoneyById(10,2L);
     }
+
+
+    public  int  addMone1y(int a){
+        userRepository.addMoneyById(10,1L);
+        userRepository.reduceMoneyById(10,2L);
+        return  1;
+    }
 }

@@ -47,11 +47,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-
 public class Test {
+
     public static List<Student> initData(){
         return new ArrayList<Student>(Arrays.asList(new Student("zlo","18","男"),
                 new Student("sjg",null,"女")));
+
     }
     public static void main(String[] args) {
         List<Student> studentList = initData();
