@@ -6,8 +6,6 @@ public class Student {
 	private String age;
 	
 	private String sex;
-	
-	
 
 	public Student() {
 		super();
@@ -47,6 +45,5 @@ public class Student {
 	public  void greet(){
 		System.out.println("hello");
 	}
-	
-	
+
 }
