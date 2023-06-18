@@ -13,11 +13,13 @@ public class CallableTest {
         FutureTask futureTask = new FutureTask(new Callable() {
             @Override
             public Object call() throws Exception {
+                Thread.sleep(3000);
                 return 1;
             }
         });
         Thread thread = new Thread(futureTask);
         thread.start();
+        System.out.println(1);
         Object o = futureTask.get();
         System.out.println((int)o);
     }

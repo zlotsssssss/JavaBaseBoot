@@ -9,6 +9,7 @@ add(index,e)
 set(index,e)
 remove(index)
 等和索引有关的方法
+sort( Comparator<? extends E>) 用Arrays.sort
 
 
  */

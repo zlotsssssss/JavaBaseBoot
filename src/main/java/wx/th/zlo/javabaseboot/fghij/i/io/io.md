@@ -8,3 +8,9 @@ JVM垃圾回收对物理连接资源，无法回收，数据库连接、输入�
         2.字符流（.txt .c .cpp .java）包含中文也可以 用于文本传输  Reader  Writer 
 流角色分类：1.节点流（未包装的流，fileInputStream，） 2.处理流（包装流，BufferFileInputStream），  3,转换流
 
+节点流：FileInputStream FileOutputStream FileReader FileWriter
+缓冲流：BufferedInputStream BufferedOutputStream BufferedReader BufferedWriter
+转换流：InputStreamReader（解码），OutputStreamWriter（编码）
+数据流：DataInputStream、DataOutputStream
+对象流：ObjectInputStream,ObjectOutputStream
+

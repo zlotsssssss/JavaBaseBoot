@@ -3,7 +3,6 @@ package wx.th.zlo.javabaseboot.abcde.c.collection.map;
 //测试：当2个对象的hashcode 和 equals 都相等， map插入就会覆盖
 
 import java.util.HashMap;
-import java.util.Set;
 
 class Inte {
     int value;

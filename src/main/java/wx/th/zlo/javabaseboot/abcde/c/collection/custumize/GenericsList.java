@@ -1,8 +1,6 @@
 package wx.th.zlo.javabaseboot.abcde.c.collection.custumize;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;

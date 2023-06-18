@@ -17,7 +17,7 @@ isEmpty()
 add(e)
 remove(e)
 contains(e)
-retainAll(c)
+retainAll(c) 保留c中的元素
 addAll(c)
 removeAll(c)
 containsAll(c)

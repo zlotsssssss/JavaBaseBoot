@@ -3,6 +3,7 @@ package wx.th.zlo.javabaseboot.abcde.c.collection.list;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collector;
@@ -33,13 +34,35 @@ public class ArrayListTest {
 	public void test() throws Exception {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		list.add(2);
-		list.add(3);
+		//list.add(3);
 		ArrayList<Integer> list1 = new ArrayList<Integer>();
-		list1.add(1);
+		//list1.add(1);
 		list1.add(2);
-		boolean b = list.retainAll(list1); //求list中包含了list1的元素
+		boolean b = list.retainAll(list1); //保留了List包含在lsit1中的元素，返回值表示是否
 		System.out.println(b);
 		System.out.println(list);
+
+
+		//sort函数
+		List<String> sortList = new ArrayList<>();
+		sortList.add("3");
+		sortList.add("1");
+		sortList.add("2");
+		sortList.sort(new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				int ret = 0;
+				if( Integer.parseInt(o1) > Integer.parseInt(o2)){
+					ret  = 1;
+				}else{
+					ret = -1;
+				}
+				return ret;
+			}
+		});
+		for (String s : sortList) {
+			System.out.println(s);
+		}
 	}
 	
 }

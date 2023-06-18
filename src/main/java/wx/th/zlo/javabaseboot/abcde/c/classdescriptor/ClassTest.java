@@ -17,12 +17,18 @@ public class ClassTest {
 		Field declaredField = studentClass.getDeclaredField("name");
 		Method declaredMethod = studentClass.getDeclaredMethod("getName");
 		Method getAge = studentClass.getDeclaredMethod("getAge");
+		Student student = new Student();
+		student.setAge("123");
+		Object obj = getAge.invoke(student);
+		System.out.println(obj);
+
+
 		//通过BeanUtils 将对类的表述结构 转换成 一对象 包含了属性、属性的读写方法 这样的结构
 		PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(studentClass);
 		for (PropertyDescriptor pDescriptor : propertyDescriptors) {
-			pDescriptor.getName();
-			pDescriptor.getWriteMethod();
-			pDescriptor.getReadMethod();
+			String name = pDescriptor.getName();
+			Method writeMethod = pDescriptor.getWriteMethod();
+			Method readMethod = pDescriptor.getReadMethod();
 		}
 	}
 	//通过反射获得某个类的某属性描述对象，然后在获得这个类的属性值，可以获得私有和共有

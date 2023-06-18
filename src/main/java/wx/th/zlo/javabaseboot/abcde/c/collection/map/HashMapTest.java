@@ -4,10 +4,8 @@ import org.junit.Test;
 import wx.th.zlo.javabaseboot.fghij.g.generics.Fruit;
 
 import java.lang.reflect.Field;
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Consumer;
 
 
 //HashMap 底层用Node<K,V>[] tables 存储数据，一个node，包含hash、k、v、next(用与存储相同hash的对象)，底层还是数组
@@ -30,18 +28,23 @@ public class HashMapTest {
         map.put("apple", new Fruit("apple", "19"));
         map.put("dddd", new Fruit("apple", "19"));
         map.put("applecc", new Fruit("apple", "19"));
+        Map.Entry<String, Fruit>[] capaCity = getArrayListCapaCity(map);
+        System.out.println("初始map的容量："+capaCity.length);
         Set<String> keySet = map.keySet();
-        for (String s : keySet) {
-            System.out.println(s);
-        }
+        System.out.println(keySet);
+        Set<Map.Entry<String, Fruit>> entrySet = map.entrySet();
+        System.out.println(entrySet);
+        Collection<Fruit> values = map.values();
+        values.forEach(new Consumer<Fruit>() {
+            @Override
+            public void accept(Fruit fruit) {
+                fruit.setPrice("30");
+            }
+        });
+        System.out.println(map);
 
-        Map.Entry<String, Fruit>[] objec = getArrayListCapaCity(map);
-        for (int i = 0; i < objec.length; i++) {
-            if(objec[i] != null)
-                System.out.println(objec[i].getValue() + " " +i);
-        }
-        System.out.println(objec.length);
-        Set<Map.Entry<String, Fruit>> entries = map.entrySet();
+
+
     }
 
     public Map.Entry<String, Fruit>[] getArrayListCapaCity(Map<String, Fruit> map) throws Exception {

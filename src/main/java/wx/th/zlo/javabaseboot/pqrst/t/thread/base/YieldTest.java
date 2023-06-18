@@ -20,7 +20,7 @@ class YieldThread extends Thread{
     public void run() {
             for (int i = 0 ; i < 10 ; i++){
                 if("1".equals(currentThread().getName())){
-                    if(i % 3 == 0) yield();
+                    if(currentThread().getName().equalsIgnoreCase("1")) yield();
                 }
                 System.out.println(currentThread().getName()+":" + i);
             }

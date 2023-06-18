@@ -1,6 +1,8 @@
 package wx.th.zlo.javabaseboot.aabase;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
 	private String name;
 	
 	private String age;
